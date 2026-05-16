@@ -3,3 +3,7 @@ title: "My Portfolio"
 ---
 
 This is my Math 437 portfolio website.
+
+## Math 437 Portfolio Project
+
+[Final Math 437 Project](project2_edited.html)

@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - index.qmd
+    - project2_edited.qmd
 
 website:
   title: "math437-portfolio"
