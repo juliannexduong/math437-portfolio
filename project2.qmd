@@ -1,6 +1,6 @@
 ---
 title: "Predicting Star Baker on The Great British Bake Off"
-author: Student Name
+author: Julianne Duong
 format: html
 editor: source
 ---
