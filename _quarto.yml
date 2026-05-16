@@ -3,7 +3,7 @@ project:
   output-dir: docs
   render:
     - index.qmd
-    - project2_edited.qmd
+    - project2.qmd
 
 website:
   title: "math437-portfolio"
@@ -11,7 +11,7 @@ website:
     left:
       - href: index.html
         text: Home
-      - href: project2_edited.html
+      - href: project2.html
         text: Project
 
 format:

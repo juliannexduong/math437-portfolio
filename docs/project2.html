@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Julianne Duong">
+<meta name="author" content="Student Name">
 
 <title>Predicting Star Baker on The Great British Bake Off – math437-portfolio</title>
 <style>
@@ -133,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./project2_edited.html" aria-current="page"> 
+    <a class="nav-link active" href="./project2.html" aria-current="page"> 
 <span class="menu-text">Project</span></a>
   </li>  
 </ul>
@@ -155,15 +155,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#motivation-and-context" id="toc-motivation-and-context" class="nav-link" data-scroll-target="#motivation-and-context">Motivation and Context</a></li>
   <li><a href="#packages-used-in-this-analysis" id="toc-packages-used-in-this-analysis" class="nav-link" data-scroll-target="#packages-used-in-this-analysis">Packages Used In This Analysis</a></li>
-  <li><a href="#section-1-data-description" id="toc-section-1-data-description" class="nav-link" data-scroll-target="#section-1-data-description">Section 1: Data Description</a></li>
-  <li><a href="#section-2-data-wrangling-and-exploratory-data-analysis" id="toc-section-2-data-wrangling-and-exploratory-data-analysis" class="nav-link" data-scroll-target="#section-2-data-wrangling-and-exploratory-data-analysis">Section 2: Data Wrangling and Exploratory Data Analysis</a></li>
-  <li><a href="#section-3-unsupervised-learning" id="toc-section-3-unsupervised-learning" class="nav-link" data-scroll-target="#section-3-unsupervised-learning">Section 3: Unsupervised Learning</a></li>
-  <li><a href="#section-4-supervised-learning" id="toc-section-4-supervised-learning" class="nav-link" data-scroll-target="#section-4-supervised-learning">Section 4: Supervised Learning</a>
+  <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data Description</a></li>
+  <li><a href="#data-wrangling-and-exploratory-data-analysis" id="toc-data-wrangling-and-exploratory-data-analysis" class="nav-link" data-scroll-target="#data-wrangling-and-exploratory-data-analysis">Data Wrangling and Exploratory Data Analysis</a></li>
+  <li><a href="#unsupervised-learning" id="toc-unsupervised-learning" class="nav-link" data-scroll-target="#unsupervised-learning">Unsupervised Learning</a></li>
+  <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link" data-scroll-target="#supervised-learning">Supervised Learning</a>
   <ul class="collapse">
   <li><a href="#model-1-logistic-regression" id="toc-model-1-logistic-regression" class="nav-link" data-scroll-target="#model-1-logistic-regression">Model 1: Logistic regression</a></li>
   <li><a href="#model-2-k-nearest-neighbors" id="toc-model-2-k-nearest-neighbors" class="nav-link" data-scroll-target="#model-2-k-nearest-neighbors">Model 2: K-nearest neighbors</a></li>
-  <li><a href="#limitations-and-future-work" id="toc-limitations-and-future-work" class="nav-link" data-scroll-target="#limitations-and-future-work">Limitations and Future Work</a></li>
   </ul></li>
+  <li><a href="#insightsconclusion" id="toc-insightsconclusion" class="nav-link" data-scroll-target="#insightsconclusion">Insights/Conclusion</a></li>
+  <li><a href="#limitations-and-future-work" id="toc-limitations-and-future-work" class="nav-link" data-scroll-target="#limitations-and-future-work">Limitations and Future Work</a></li>
   </ul>
 </nav>
     </div>
@@ -182,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Julianne Duong </p>
+             <p>Student Name </p>
           </div>
   </div>
     
@@ -303,8 +304,8 @@ Attaching package: 'recipes'</code></pre>
 </tbody>
 </table>
 </section>
-<section id="section-1-data-description" class="level2">
-<h2 class="anchored" data-anchor-id="section-1-data-description">Section 1: Data Description</h2>
+<section id="data-description" class="level2">
+<h2 class="anchored" data-anchor-id="data-description">Data Description</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: import data</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -466,9 +467,8 @@ Attaching package: 'recipes'</code></pre>
 <p>I used an 80/20 training-test split grouped by series. This means that all observations from the same season were kept together in either the training set or the test set. I chose this instead of a completely random baker-episode split because observations from the same season are related to each other. For example, bakers in the same season compete against the same group of people, and the episode structure within a season is connected. A grouped split gives a stricter test of whether the model can generalize to seasons that were not used for training.</p>
 <p>I still checked the proportion of Star Baker and non-Star Baker observations in the training and test sets because the response variable is unbalanced. Most baker-episode observations are not Star Baker winners, so accuracy needs to be interpreted carefully.</p>
 </section>
-<section id="section-2-data-wrangling-and-exploratory-data-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="section-2-data-wrangling-and-exploratory-data-analysis">Section 2: Data Wrangling and Exploratory Data Analysis</h2>
-<p>I would like this section to be graded using the <strong>Additional Exploratory Analysis</strong> rubric. The cleaning I did was mostly just removing unusable rows and creating a few variables for modeling.</p>
+<section id="data-wrangling-and-exploratory-data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling-and-exploratory-data-analysis">Data Wrangling and Exploratory Data Analysis</h2>
 <p>First, I looked at the distribution of the response variable. This is important because if there are many more <code>no</code> observations than <code>yes</code> observations, then accuracy by itself can be misleading.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: star baker table</span></span>
@@ -501,7 +501,7 @@ yes  no
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project2_edited_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -540,7 +540,7 @@ yes  no
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project2_edited_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -578,7 +578,7 @@ yes  no
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project2_edited_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -618,7 +618,7 @@ yes  no
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project2_edited_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -640,7 +640,7 @@ yes  no
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project2_edited_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -683,7 +683,7 @@ yes  no
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project2_edited_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -704,15 +704,15 @@ yes  no
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project2_edited_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>There is not a perfectly clear linear pattern, but the plot shows that Star Baker winners are more common among observations with stronger current technical performance. Previous average technical rank seems less clearly separated, but it may still add some information about overall baker strength.</p>
 </section>
-<section id="section-3-unsupervised-learning" class="level2">
-<h2 class="anchored" data-anchor-id="section-3-unsupervised-learning">Section 3: Unsupervised Learning</h2>
+<section id="unsupervised-learning" class="level2">
+<h2 class="anchored" data-anchor-id="unsupervised-learning">Unsupervised Learning</h2>
 <p>For unsupervised learning, I used <strong>principal component analysis</strong>, or PCA. PCA is a way to take several numeric variables and combine them into new variables called principal components. The first principal component is the direction that explains the most variation in the data. The second principal component explains the next most variation, while being uncorrelated with the first component. PCA does not use the response variable, so here it is used to explore patterns in the training data rather than directly predict Star Baker.</p>
 <p>I used the numeric predictors from the training set: episode number, technical rank, technical percentile, number of bakers in the episode, baker episode number, previous Star Baker wins, and previous average technical rank. I centered and scaled the variables before PCA because the variables are measured on different scales.</p>
 <div class="cell">
@@ -786,7 +786,7 @@ Cumulative Proportion  0.5249 0.7665 0.9049 0.99072 0.99754 0.99998 1.00000</cod
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project2_edited_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -834,7 +834,7 @@ Cumulative Proportion  0.5249 0.7665 0.9049 0.99072 0.99754 0.99998 1.00000</cod
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project2_edited_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -861,8 +861,8 @@ previous_avg_technical previous_avg_technical -0.1451402  0.005104604</code></pr
 <p>The first two principal components explain about 76.8% of the variation in the numeric predictors, with PC1 explaining about 53.3% and PC2 explaining about 23.4%. This is a fairly large amount of variation, so the first two components are useful for visualization. However, the meaning of the components needs to be interpreted carefully. PC1 is strongly related to variables such as episode number, number of bakers remaining, and baker episode number, which all describe how late the observation is in the season. Because these variables measure similar season-context information, PC1 mostly captures season timing rather than a completely new pattern.</p>
 <p>The PCA plot does not clearly separate Star Baker winners from non-winners. Some of the line-like patterns in the plot are probably caused by variables that are discrete or bounded, such as technical percentile, episode number, and number of bakers remaining. Therefore, I use the PCA as exploratory background only, not as strong evidence that the groups are separated.</p>
 </section>
-<section id="section-4-supervised-learning" class="level2">
-<h2 class="anchored" data-anchor-id="section-4-supervised-learning">Section 4: Supervised Learning</h2>
+<section id="supervised-learning" class="level2">
+<h2 class="anchored" data-anchor-id="supervised-learning">Supervised Learning</h2>
 <p>For supervised learning, I fit two classification models to predict whether a baker is Star Baker. The first model is logistic regression, and the second model is k-nearest neighbors. K-nearest neighbors is one of the newer models from the second part of the course, and I tuned the number of neighbors.</p>
 <p>I used cross-validation on the training set to estimate the accuracy of each model. Cross-validation splits the training data into smaller pieces, fits the model on some pieces, and checks performance on the held-out piece. This gives a better estimate of training performance than checking accuracy on the same data used to fit the model.</p>
 <div class="cell">
@@ -999,7 +999,7 @@ There were issues with some computations   A: x2</code></pre>
 <span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a><span class="co"># tune KNN using cross-validation.</span></span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a><span class="co"># tune KNN using cross-validation</span></span>
 <span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a>knn_tune <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
 <span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a>  knn_wflow,</span>
 <span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> bakeoff_folds,</span>
@@ -1034,7 +1034,7 @@ There were issues with some computations   A: x2</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project2_edited_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project2_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1155,7 +1155,7 @@ Computational engine: kknn </code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project2_edited_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project2_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1240,18 +1240,21 @@ prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases</cod
 4 roc_auc     binary         0.796</code></pre>
 </div>
 </div>
+</section>
+</section>
+<section id="insightsconclusion" class="level2">
+<h2 class="anchored" data-anchor-id="insightsconclusion">Insights/Conclusion</h2>
 <p>Based on the EDA, the assumptions for logistic regression are only partly reasonable. The response is binary, which fits logistic regression, but the relationship between predictors and the log-odds may not be perfectly linear. KNN may be more flexible because it does not require a linear pattern, but it can struggle when the classes overlap or when one class is much more common than the other. Since Star Baker depends on several judging decisions that are not completely recorded in these numeric variables, neither model should be expected to predict perfectly.</p>
 <p>Overall, the analysis suggests that technical challenge performance is related to becoming Star Baker, but it is not enough to fully predict the outcome. Star Baker winners had stronger average technical performance than non-winners, but there was still overlap between the groups. This makes sense because Star Baker is based on the full episode, including signature and showstopper bakes, not just the technical challenge.</p>
 <p>The modeling results also show why accuracy needs to be interpreted carefully. Since most baker-episode observations are not Star Baker winners, a model can have high accuracy even if it rarely identifies actual Star Baker winners. For that reason, I compared the models to a baseline model and also considered probability-based metrics such as Brier score and mean log loss. The models may still contain useful information, but they should not be treated as strong or complete predictors of judging outcomes.</p>
 <p>The main insight from this project is that technical performance and episode context are useful pieces of information, but the available variables do not capture everything the judges use. Future work could improve the analysis by adding more structured information about signature and showstopper performance, such as flavor, presentation, difficulty, judge comments, or whether a baker had a standout non-technical bake.</p>
 </section>
-<section id="limitations-and-future-work" class="level3">
-<h3 class="anchored" data-anchor-id="limitations-and-future-work">Limitations and Future Work</h3>
+<section id="limitations-and-future-work" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-and-future-work">Limitations and Future Work</h2>
 <p>One limitation is that the data set does not contain detailed judging information for every bake. The technical rank is useful, but Star Baker is also based on the signature and showstopper challenges, and those are recorded mostly as text descriptions rather than numeric judging scores. Another limitation is that the same baker can appear in multiple episodes, so the observations are not perfectly independent. I tried to make the train-test split more realistic by grouping by series, but the repeated-baker structure is still important to remember.</p>
 <p>In future work, I would try to create more variables from the signature and showstopper information. For example, it might be useful to identify whether a bake was especially difficult, whether the baker used unusual flavors, or whether the judges gave positive or negative comments. I would also like to look more carefully at which bakers or episodes are poorly predicted by the model, because those mistakes may show what information is missing from the current data.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

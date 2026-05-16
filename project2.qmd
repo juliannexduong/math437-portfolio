@@ -1,6 +1,6 @@
 ---
 title: "Predicting Star Baker on The Great British Bake Off"
-author: Julianne Duong
+author: Student Name
 format: html
 editor: source
 ---
@@ -51,7 +51,7 @@ The packages below were used for the analysis. I loaded the individual packages 
 | `yardstick` | to calculate model performance metrics |
 | `broom` | to get model predictions in a convenient format |
 
-## Section 1: Data Description
+## Data Description
 
 ```{r}
 
@@ -179,7 +179,7 @@ I used an 80/20 training-test split grouped by series. This means that all obser
 
 I still checked the proportion of Star Baker and non-Star Baker observations in the training and test sets because the response variable is unbalanced. Most baker-episode observations are not Star Baker winners, so accuracy needs to be interpreted carefully.
 
-## Section 2: Data Wrangling and Exploratory Data Analysis
+## Data Wrangling and Exploratory Data Analysis
 
 First, I looked at the distribution of the response variable. This is important because if there are many more `no` observations than `yes` observations, then accuracy by itself can be misleading.
 
@@ -374,7 +374,7 @@ ggplot(bakeoff_train, aes(x = previous_avg_technical, y = technical_percentile, 
 
 There is not a perfectly clear linear pattern, but the plot shows that Star Baker winners are more common among observations with stronger current technical performance. Previous average technical rank seems less clearly separated, but it may still add some information about overall baker strength.
 
-## Section 3: Unsupervised Learning
+## Unsupervised Learning
 
 For unsupervised learning, I used **principal component analysis**, or PCA. PCA is a way to take several numeric variables and combine them into new variables called principal components. The first principal component is the direction that explains the most variation in the data. The second principal component explains the next most variation, while being uncorrelated with the first component. PCA does not use the response variable, so here it is used to explore patterns in the training data rather than directly predict Star Baker.
 
@@ -489,7 +489,7 @@ The first two principal components explain about 76.8% of the variation in the n
 
 The PCA plot does not clearly separate Star Baker winners from non-winners. Some of the line-like patterns in the plot are probably caused by variables that are discrete or bounded, such as technical percentile, episode number, and number of bakers remaining. Therefore, I use the PCA as exploratory background only, not as strong evidence that the groups are separated.
 
-## Section 4: Supervised Learning
+## Supervised Learning
 
 For supervised learning, I fit two classification models to predict whether a baker is Star Baker. The first model is logistic regression, and the second model is k-nearest neighbors. K-nearest neighbors is one of the newer models from the second part of the course, and I tuned the number of neighbors.
 
@@ -620,7 +620,7 @@ knn_grid <- data.frame(
 
 set.seed(123)
 
-# tune KNN using cross-validation.
+# tune KNN using cross-validation
 knn_tune <- tune_grid(
   knn_wflow,
   resamples = bakeoff_folds,
@@ -790,6 +790,8 @@ class_metrics(
 
 ```
 
+## Insights/Conclusion
+
 Based on the EDA, the assumptions for logistic regression are only partly reasonable. The response is binary, which fits logistic regression, but the relationship between predictors and the log-odds may not be perfectly linear. KNN may be more flexible because it does not require a linear pattern, but it can struggle when the classes overlap or when one class is much more common than the other. Since Star Baker depends on several judging decisions that are not completely recorded in these numeric variables, neither model should be expected to predict perfectly.
 
 Overall, the analysis suggests that technical challenge performance is related to becoming Star Baker, but it is not enough to fully predict the outcome. Star Baker winners had stronger average technical performance than non-winners, but there was still overlap between the groups. This makes sense because Star Baker is based on the full episode, including signature and showstopper bakes, not just the technical challenge.
@@ -798,7 +800,7 @@ The modeling results also show why accuracy needs to be interpreted carefully. S
 
 The main insight from this project is that technical performance and episode context are useful pieces of information, but the available variables do not capture everything the judges use. Future work could improve the analysis by adding more structured information about signature and showstopper performance, such as flavor, presentation, difficulty, judge comments, or whether a baker had a standout non-technical bake.
 
-### Limitations and Future Work
+## Limitations and Future Work
 
 One limitation is that the data set does not contain detailed judging information for every bake. The technical rank is useful, but Star Baker is also based on the signature and showstopper challenges, and those are recorded mostly as text descriptions rather than numeric judging scores. Another limitation is that the same baker can appear in multiple episodes, so the observations are not perfectly independent. I tried to make the train-test split more realistic by grouping by series, but the repeated-baker structure is still important to remember.
 
