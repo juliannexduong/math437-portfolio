@@ -6,4 +6,6 @@ This is my Math 437 portfolio website.
 
 ## Math 437 Portfolio Project
 
-[Final Math 437 Project](project2_edited.html)
+For my final project, I used data from *The Great British Bake Off* to investigate whether technical challenge performance and episode context can help predict whether a baker becomes Star Baker.
+
+[Final Math 437 Project](project2.html)
